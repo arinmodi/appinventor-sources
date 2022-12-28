@@ -43,6 +43,7 @@ import com.google.appinventor.client.editor.simple.components.MockNonVisibleComp
 import com.google.appinventor.client.editor.simple.components.MockPasswordTextBox;
 import com.google.appinventor.client.editor.simple.components.MockPhoneNumberPicker;
 import com.google.appinventor.client.editor.simple.components.MockPolygon;
+import com.google.appinventor.client.editor.simple.components.MockProgressBarView;
 import com.google.appinventor.client.editor.simple.components.MockRadioButton;
 import com.google.appinventor.client.editor.simple.components.MockRectangle;
 import com.google.appinventor.client.editor.simple.components.MockScrollHorizontalArrangement;
@@ -521,6 +522,8 @@ public final class SimpleComponentDescriptor {
       return new MockChart(editor);
     } else if (name.equals(MockChartData2D.TYPE)) {
       return new MockChartData2D(editor);
+    } else if (name.equals(MockProgressBarView.TYPE)) {
+      return new MockProgressBarView(editor);
     } else {
       // TODO(user): add 3rd party mock component proxy here
       throw new UnsupportedOperationException("unknown component: " + name);

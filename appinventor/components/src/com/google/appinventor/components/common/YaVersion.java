@@ -1285,6 +1285,9 @@ public class YaVersion {
   // For SPINNER_COMPONENT_VERSION 1:
   public static final int SPINNER_COMPONENT_VERSION = 1;
 
+  // For PROGRESSBAR_COMPONENT_VERSION 1:
+  public static final int PROGRESSBAR_COMPONENT_VERSION=1;
+
   // For SOUND_COMPONENT_VERSION 2:
   // - The Sound.SoundError event was added.
   // For SOUND_COMPONENT_VERSION 3:

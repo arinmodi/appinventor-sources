@@ -118,5 +118,11 @@ public class ComponentConstants {
    */
   public static final int CHART_PREFERRED_WIDTH = 176;
   public static final int CHART_PREFERRED_HEIGHT = 144;
+
+  /*
+   * Progress Bar Components
+   */
+  public static final int PROGRESSBAR_PREFERRED_WIDTH  = 30;
+  public static final int PROGRESSBAR_PREFERRED_HEIGHT = 30;
 }
 

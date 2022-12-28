@@ -17,6 +17,7 @@ Table of Contents:
 * [ListView](#ListView)
 * [Notifier](#Notifier)
 * [PasswordTextBox](#PasswordTextBox)
+* [ProgressBarView](#ProgressBarView)
 * [Screen](#Screen)
 * [Slider](#Slider)
 * [Spinner](#Spinner)
@@ -983,6 +984,47 @@ Users enter passwords in a password text box component, which hides the text tha
 
 {:id="PasswordTextBox.RequestFocus" class="method"} <i/> RequestFocus()
 : Request focus to current `PasswordTextBox`.
+
+## ProgressBarView  {#ProgressBarView}
+
+`ProgressBarView` are used as loading indicators in android applications. 
+ These are generally used when the application is loading the data from the server or database.
+
+
+
+### Properties  {#ProgressBarView-Properties}
+
+{:.properties}
+
+{:id="ProgressBarView.Height" .number .bo} *Height*
+: Specifies the `ProgressBarView`'s vertical height, measured in pixels.
+
+{:id="ProgressBarView.HeightPercent" .number .wo .bo} *HeightPercent*
+: Specifies the `ProgressBarView`'s vertical height as a percentage
+ of the [`Screen`'s `Height`](userinterface.html#Screen.Height).
+
+{:id="ProgressBarView.Visible" .boolean} *Visible*
+: Specifies whether the `ProgressBarView` should be visible on the screen.  Value is `true`{:.logic.block}
+ if the `ProgressBarView` is showing and `false`{:.logic.block} if hidden.
+
+{:id="ProgressBarView.Width" .number .bo} *Width*
+: Specifies the horizontal width of the `ProgressBarView`, measured in pixels.
+
+{:id="ProgressBarView.WidthPercent" .number .wo .bo} *WidthPercent*
+: Specifies the horizontal width of the `ProgressBarView` as a percentage
+ of the [`Screen`'s `Width`](userinterface.html#Screen.Width).
+
+### Events  {#ProgressBarView-Events}
+
+{:.events}
+None
+
+
+### Methods  {#ProgressBarView-Methods}
+
+{:.methods}
+None
+
 
 ## Screen  {#Screen}
 
