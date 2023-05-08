@@ -14,7 +14,7 @@ import com.google.appinventor.client.editor.youngandroid.YaBlocksEditor;
 import com.google.appinventor.client.explorer.commands.AddFormCommand;
 import com.google.appinventor.client.explorer.commands.ChainableCommand;
 import com.google.appinventor.client.explorer.commands.DeleteFileCommand;
-
+import com.google.appinventor.client.explorer.dialogs.ProjectPropertiesDialogBox;
 import com.google.appinventor.client.output.OdeLog;
 
 import com.google.appinventor.client.tracking.Tracking;
@@ -124,6 +124,8 @@ public class DesignToolbar extends Toolbar {
   private static final String WIDGET_NAME_SWITCH_TO_BLOCKS_EDITOR = "SwitchToBlocksEditor";
   private static final String WIDGET_NAME_SWITCH_TO_FORM_EDITOR = "SwitchToFormEditor";
   private static final String WIDGET_NAME_SENDTOGALLERY = "SendToGallery";
+  //Project Properties WIDGET
+  private static final String WIDGET_NAME_PROJECTPROPERTIES = "ProjectProperties";
 
   // Switch language
   private static final String WIDGET_NAME_SWITCH_LANGUAGE = "Language";
@@ -196,6 +198,9 @@ public class DesignToolbar extends Toolbar {
           MESSAGES.publishToGalleryButton(), new SendToGalleryAction()));
     }
 
+    addButton(new ToolbarItem(WIDGET_NAME_PROJECTPROPERTIES,
+        MESSAGES.projectPropertiesButton(), new ProjectPropertiesAction()));
+
     addButton(new ToolbarItem(WIDGET_NAME_SWITCH_TO_FORM_EDITOR,
         MESSAGES.switchToFormEditorButton(), new SwitchToFormEditorAction()), true);
     addButton(new ToolbarItem(WIDGET_NAME_SWITCH_TO_BLOCKS_EDITOR,
@@ -242,6 +247,14 @@ public class DesignToolbar extends Toolbar {
           doSwitch.run();
         }
       }
+    }
+  }
+
+  private class ProjectPropertiesAction implements Command {
+    @Override
+    public void execute() {
+      final ProjectPropertiesDialogBox dialogBox = new ProjectPropertiesDialogBox();
+      dialogBox.show();
     }
   }
 

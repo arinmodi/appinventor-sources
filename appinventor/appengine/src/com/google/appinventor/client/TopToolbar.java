@@ -19,6 +19,7 @@ import com.google.appinventor.client.explorer.commands.ShowBarcodeCommand;
 import com.google.appinventor.client.explorer.commands.ShowProgressBarCommand;
 import com.google.appinventor.client.explorer.commands.WaitForBuildResultCommand;
 import com.google.appinventor.client.explorer.commands.WarningDialogCommand;
+import com.google.appinventor.client.explorer.dialogs.ProjectPropertiesDialogBox;
 import com.google.appinventor.client.explorer.project.Project;
 import com.google.appinventor.client.output.OdeLog;
 import com.google.appinventor.client.tracking.Tracking;
@@ -109,6 +110,8 @@ public class TopToolbar extends Composite {
   private static final String WIDGET_NAME_IMPORTTEMPLATE = "ImportTemplate";
   private static final String WIDGET_NAME_EXPORTALLPROJECTS = "ExportAllProjects";
   private static final String WIDGET_NAME_EXPORTPROJECT = "ExportProject";
+  //Project Properties Menu Item Widget
+  private static final String WIDGET_NAME_PROJECTPROPERTIES = "ProjectProperties";
 
   private static final String WIDGET_NAME_ADMIN = "Admin";
   private static final String WIDGET_NAME_USER_ADMIN = "UserAdmin";
@@ -230,6 +233,9 @@ public class TopToolbar extends Composite {
     if (!isReadOnly) {
       fileItems.add(new DropDownItem(WIDGET_NAME_NEW, MESSAGES.newProjectMenuItem(),
           new NewAction()));
+      // Project Properties Menu Item
+      fileItems.add(new DropDownItem(WIDGET_NAME_PROJECTPROPERTIES, MESSAGES.ProjectPropertiesMenuItem(), 
+          new ProjectPropertiesAction()));
       fileItems.add(new DropDownItem(WIDGET_NAME_IMPORTPROJECT, MESSAGES.importProjectMenuItem(),
           new ImportProjectAction()));
       fileItems.add(new DropDownItem(WIDGET_NAME_IMPORTTEMPLATE, MESSAGES.importTemplateButton(),
@@ -647,6 +653,13 @@ public class TopToolbar extends Composite {
     @Override
     public void execute() {
       new TemplateUploadWizard().center();
+    }
+  }
+
+  private static class ProjectPropertiesAction implements Command {
+    @Override
+    public void execute() {
+      new ProjectPropertiesDialogBox().show();
     }
   }
 
@@ -1073,7 +1086,9 @@ public class TopToolbar extends Composite {
     }
     if (view == 0) {  // We are in the Projects view
       fileDropDown.setItemEnabled(MESSAGES.deleteProjectButton(), false);
-      fileDropDown.setItemEnabled(MESSAGES.deleteFromTrashButton(), false);
+      fileDropDown.setItemEnabled(MESSAGES.ProjectPropertiesMenuItem(), false);
+      fileDropDown.setItemEnabled(MESSAGES.deleteFromTrashButton(), 
+      ProjectListBox.getProjectListBox().getProjectList().getMyProjectsCount() == 0);
       fileDropDown.setItemEnabled(MESSAGES.trashProjectMenuItem(),
           ProjectListBox.getProjectListBox().getProjectList().getMyProjectsCount() == 0);
       fileDropDown.setItemEnabled(MESSAGES.exportAllProjectsMenuItem(),
@@ -1090,6 +1105,7 @@ public class TopToolbar extends Composite {
       }
     } else { // We have to be in the Designer/Blocks view
       fileDropDown.setItemEnabled(MESSAGES.deleteProjectButton(), true);
+      fileDropDown.setItemEnabled(MESSAGES.ProjectPropertiesMenuItem(), true);
       fileDropDown.setItemEnabled(MESSAGES.trashProjectMenuItem(), true);
       fileDropDown.setItemEnabled(MESSAGES.exportAllProjectsMenuItem(),
       ProjectListBox.getProjectListBox().getProjectList().getMyProjectsCount() > 0);
