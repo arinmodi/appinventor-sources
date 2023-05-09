@@ -928,11 +928,15 @@ public final class MockForm extends MockContainer {
   private void setBlockSubsetProperty(String asJson) {
     //This property applies to the application and is only visible on Screen1. When we load a form that is
     //not Screen1, this method will be called with the default value for SubsetJson (""). We need to ignore that.
+    Ode.CLog("setBlockSubsetProperty called with value : " + asJson);
+    Ode.CLog("Is Screen1 : " + editor.isScreen1());
     if (true) {
+      Ode.CLog("inside if, ");
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET, asJson);
       if (editor.isLoadComplete()) {
+        Ode.CLog("inside editor.isLoadComplete become true");
         ((YaFormEditor)editor).reloadComponentPalette(asJson);
       }
     }
@@ -1501,5 +1505,9 @@ public final class MockForm extends MockContainer {
                   SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_NAME));
     return properties;
   }
+
+  public EditableProperties listProperties() {
+    return properties;
+  } 
 
 }

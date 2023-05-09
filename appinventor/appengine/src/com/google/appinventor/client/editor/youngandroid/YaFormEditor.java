@@ -584,8 +584,10 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
     OdeLog.log(subsetjson);
     Set<String> shownComponents = new HashSet<String>();
     if (subsetjson.length() > 0) {
+      Ode.CLog("Subset Json Length Greater Than Zero");
       try {
         String shownComponentsStr = getShownComponents(subsetjson);
+        Ode.CLog("shown components found");
         if (shownComponentsStr.length() > 0) {
           shownComponents = new HashSet<String>(Arrays.asList(shownComponentsStr.split(",")));
         }

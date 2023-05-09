@@ -82,7 +82,7 @@ public class ProjectPropertiesDialogBox extends DialogBox {
         String activeScreen = Ode.getInstance().getDesignToolbar().getCurrentProject().currentScreen;
         form = projectEditor.getFormFileEditor(activeScreen).getForm();
 
-        EditableProperties ep = form.getProperties();
+        EditableProperties ep = form.listProperties();
         Iterator<EditableProperty> properties = ep.iterator(); 
 
         while (properties.hasNext()) {
