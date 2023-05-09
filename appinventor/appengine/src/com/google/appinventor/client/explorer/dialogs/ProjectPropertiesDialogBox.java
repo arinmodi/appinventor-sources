@@ -27,7 +27,7 @@ import com.google.appinventor.client.widgets.properties.EditableProperty;
 import com.google.appinventor.client.widgets.properties.PropertyChangeListener;
 import com.google.appinventor.client.widgets.properties.PropertyEditor;
 
-public class ProjectPropertiesDialogBox extends DialogBox implements PropertyChangeListener { 
+public class ProjectPropertiesDialogBox extends DialogBox { 
 
     private static ProjectPropertiesDialogBoxUiBinder uiBinder =
         GWT.create(ProjectPropertiesDialogBoxUiBinder.class);
@@ -92,14 +92,6 @@ public class ProjectPropertiesDialogBox extends DialogBox implements PropertyCha
                 addProperty(p);
             }
         }
-
-        ep.addPropertyChangeListener(this);
-
-    }
-
-    @Override
-    public void onPropertyChange(String propertyName, String propertyValue) {
-      form.onPropertyChange(propertyName, propertyValue);
     }
 
 

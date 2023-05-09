@@ -580,6 +580,7 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
   }
 
   public void reloadComponentPalette(String subsetjson) {
+    Ode.CLog("Subset JSON : " + subsetjson);
     OdeLog.log(subsetjson);
     Set<String> shownComponents = new HashSet<String>();
     if (subsetjson.length() > 0) {
