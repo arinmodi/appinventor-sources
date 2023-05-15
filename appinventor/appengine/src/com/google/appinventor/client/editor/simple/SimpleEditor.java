@@ -80,6 +80,11 @@ public abstract class SimpleEditor extends FileEditor {
   public abstract boolean isScreen1();
 
   /**
+   * Returns screen which changed things
+   */
+  public abstract String getTabWhichChangedProperty();
+
+  /**
    * Refresh the properties panel in the event the set of visible properties has changed.
    */
   public abstract void refreshPropertiesPanel();

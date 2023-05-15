@@ -928,15 +928,11 @@ public final class MockForm extends MockContainer {
   private void setBlockSubsetProperty(String asJson) {
     //This property applies to the application and is only visible on Screen1. When we load a form that is
     //not Screen1, this method will be called with the default value for SubsetJson (""). We need to ignore that.
-    Ode.CLog("setBlockSubsetProperty called with value : " + asJson);
-    Ode.CLog("Is Screen1 : " + editor.isScreen1());
     if (true) {
-      Ode.CLog("inside if, ");
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET, asJson);
       if (editor.isLoadComplete()) {
-        Ode.CLog("inside editor.isLoadComplete become true");
         ((YaFormEditor)editor).reloadComponentPalette(asJson);
       }
     }
@@ -994,6 +990,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setAccentColor(String color) {
+    Ode.CLog("Callled Accent Color...");
     if (true) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
@@ -1451,38 +1448,39 @@ public final class MockForm extends MockContainer {
     // per project, not per Screen(Form) We only have to do this on
     // screens other then screen1 because screen1's value is
     // definitive.
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_SHOW_LISTS_AS_JSON,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_SHOW_LISTS_AS_JSON));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_TUTORIAL_URL,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_TUTORIAL_URL));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR_DARK,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR_DARK));
-    properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR,
-        editor.getProjectEditor().getProjectSettingsProperty(
-          SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-          SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR));
+    if (!((YaFormEditor)editor).normalCheck()) {
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_SHOW_LISTS_AS_JSON,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_SHOW_LISTS_AS_JSON));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_TUTORIAL_URL,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_TUTORIAL_URL));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR_DARK,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR_DARK));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR,
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR));
       properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_APP_NAME,
             editor.getProjectEditor().getProjectSettingsProperty(
               SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
@@ -1503,6 +1501,7 @@ public final class MockForm extends MockContainer {
                 editor.getProjectEditor().getProjectSettingsProperty(
                   SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
                   SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_NAME));
+    }
     return properties;
   }
 
