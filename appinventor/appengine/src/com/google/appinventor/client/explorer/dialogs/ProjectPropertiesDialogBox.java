@@ -36,21 +36,21 @@ public class ProjectPropertiesDialogBox extends DialogBox {
     interface ProjectPropertiesDialogBoxUiBinder extends UiBinder<Widget, ProjectPropertiesDialogBox> {
     }
 
-    private static final HashSet<String> PROJECT_PROPERTIES = new HashSet<String>() {{
-        add("Icon"); 
-        add("VersionCode"); 
-        add("VersionName"); 
-        add("AppName");
-        add("ShowListsAsJson"); 
-        add("TutorialURL"); 
-        add("BlocksToolkit"); 
-        add("PrimaryColor");
-        add("PrimaryColorDark");
-        add("AccentColor");
-        add("Theme");
-        add("Sizing");
-        add("DefaultFileScope");
-    }};
+    // private static final HashSet<String> PROJECT_PROPERTIES = new HashSet<String>() {{
+    //     add("Icon"); 
+    //     add("VersionCode"); 
+    //     add("VersionName"); 
+    //     add("AppName");
+    //     add("ShowListsAsJson"); 
+    //     add("TutorialURL"); 
+    //     add("BlocksToolkit"); 
+    //     add("PrimaryColor");
+    //     add("PrimaryColorDark");
+    //     add("AccentColor");
+    //     add("Theme");
+    //     add("Sizing");
+    //     add("DefaultFileScope");
+    // }};
 
     private MockForm form;
 
@@ -88,7 +88,7 @@ public class ProjectPropertiesDialogBox extends DialogBox {
         while (properties.hasNext()) {
             EditableProperty p = properties.next();
 
-            if (PROJECT_PROPERTIES.contains(p.getName())) {
+            if (p.getCategory() != null && p.getCategory().equals("Application")) {
                 addProperty(p);
             }
         }
