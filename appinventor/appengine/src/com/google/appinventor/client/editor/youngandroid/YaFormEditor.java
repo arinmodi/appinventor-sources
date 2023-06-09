@@ -131,19 +131,6 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
 
   private MockForm form;  // initialized lazily after the file is loaded from the ODE server
 
-  private static String projectPropertyChangedBy = "Screen1";
-
-  @Override
-  public String getTabWhichChangedProperty() {
-    return projectPropertyChangedBy;
-  }
-
-  public boolean normalCheck() {
-    Ode.CLog("Current : " + getTabText());
-    Ode.CLog("Project Property Changed By : " + projectPropertyChangedBy);
-    return getTabText().equals(projectPropertyChangedBy);
-  }
-
   // [lyn, 2014/10/13] Need to remember JSON initially loaded from .scm file *before* it is upgraded
   // by YoungAndroidFormUpgrader within upgradeFile. This JSON contains pre-upgrade component
   // version info that is needed by Blockly.SaveFile.load to perform upgrades in the Blocks Editor.
@@ -173,8 +160,6 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
   YaFormEditor(ProjectEditor projectEditor, YoungAndroidFormNode formNode) {
     super(projectEditor, formNode);
 
-    Ode.CLog("YaFormEditor New Instance is created...");
-
     this.formNode = formNode;
     COMPONENT_DATABASE = SimpleComponentDatabase.getInstance(getProjectId());
 
@@ -196,6 +181,7 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
     // Create designProperties, which will be used as the content of the PropertiesBox.
     designProperties = new PropertiesPanel();
     designProperties.setSize("100%", "100%");
+
 
     // Create palettePanel, which will be used as the content of the PaletteBox.
     palettePanel = new YoungAndroidPalettePanel(this);
@@ -364,8 +350,6 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
 
   @Override
   public void onPropertyChange(String propertyName, String propertyValue) {
-    Ode.CLog("Changing Project Property Changed By : " + getTabText());
-    projectPropertyChangedBy = getTabText();
     for (MockComponent selectedComponent : form.getSelectedComponents()) {
       selectedComponent.changeProperty(propertyName, propertyValue);
       // Ensure the editor matches (multiselect)
@@ -597,14 +581,11 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
   }
 
   public void reloadComponentPalette(String subsetjson) {
-    Ode.CLog("Subset JSON : " + subsetjson);
     OdeLog.log(subsetjson);
     Set<String> shownComponents = new HashSet<String>();
     if (subsetjson.length() > 0) {
-      Ode.CLog("Subset Json Length Greater Than Zero");
       try {
         String shownComponentsStr = getShownComponents(subsetjson);
-        Ode.CLog("shown components found");
         if (shownComponentsStr.length() > 0) {
           shownComponents = new HashSet<String>(Arrays.asList(shownComponentsStr.split(",")));
         }
@@ -754,7 +735,7 @@ public final class YaFormEditor extends SimpleEditor implements FormChangeListen
    * Updates the the whole designer: form, palette, source structure explorer,
    * assets list, and properties panel.
    */
-  private void loadDesigner() {
+  public void loadDesigner() {
     form.refresh();
     MockComponent selectedComponent = form.getLastSelectedComponent();
 

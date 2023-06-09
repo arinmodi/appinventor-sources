@@ -48,9 +48,9 @@ public class ProgressBarDialogBox extends DialogBox {
     dismissButton.addClickHandler(buttonHandler);
     HorizontalPanel buttonPanel = new HorizontalPanel();
     buttonPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
-    dismissButton.setVisible(false); // we don't need the button unless we get an error
 
-    //warning label
+    //warning label    dismissButton.setVisible(false); // we don't need the button unless we get an error
+
     warningLabel = new HTML("");
     warningLabel.setWordWrap(true);
     warningLabel.setWidth("60em");  // set width to get the text to wrap

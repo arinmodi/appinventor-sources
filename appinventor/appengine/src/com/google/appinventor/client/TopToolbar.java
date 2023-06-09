@@ -21,6 +21,7 @@ import com.google.appinventor.client.explorer.commands.WaitForBuildResultCommand
 import com.google.appinventor.client.explorer.commands.WarningDialogCommand;
 import com.google.appinventor.client.explorer.dialogs.ProjectPropertiesDialogBox;
 import com.google.appinventor.client.explorer.project.Project;
+import com.google.appinventor.client.editor.youngandroid.YaProjectEditor;
 import com.google.appinventor.client.output.OdeLog;
 import com.google.appinventor.client.tracking.Tracking;
 import com.google.appinventor.client.utils.Downloader;
@@ -659,7 +660,10 @@ public class TopToolbar extends Composite {
   private static class ProjectPropertiesAction implements Command {
     @Override
     public void execute() {
-      new ProjectPropertiesDialogBox().show();
+      // new ProjectPropertiesDialogBox();
+      YaProjectEditor projectEditor = (YaProjectEditor)Ode.getInstance().getEditorManager()
+      .getOpenProjectEditor(Ode.getInstance().getCurrentYoungAndroidProjectId());
+      projectEditor.openProjectPropertyDialog();
     }
   }
 

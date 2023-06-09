@@ -21,6 +21,7 @@ import com.google.appinventor.client.editor.simple.SimpleComponentDatabase;
 import com.google.appinventor.client.editor.simple.components.MockComponent;
 import com.google.appinventor.client.editor.simple.components.MockFusionTablesControl;
 import com.google.appinventor.client.editor.youngandroid.i18n.BlocklyMsg;
+import com.google.appinventor.client.explorer.dialogs.ProjectPropertiesDialogBox;
 import com.google.appinventor.client.explorer.project.ComponentDatabaseChangeListener;
 import com.google.appinventor.client.explorer.project.Project;
 import com.google.appinventor.client.explorer.project.ProjectChangeListener;
@@ -112,6 +113,27 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
   private boolean screen1BlocksLoaded = false;
   private boolean screen1Added = false;
 
+  // variable which open the ProjectPropertyDialog(per project)
+  private ProjectPropertiesDialogBox propertyDialogBox = null;
+
+  // variable indicate the last selected category in ProjectPropertyDialog(by default it's General)
+  private String selectedCategory = "General";
+
+  public void setSelectedCategory(String category) {
+    selectedCategory = category;
+  }
+
+  /**
+   * Opens the project property dialog
+   */
+  public void openProjectPropertyDialog() {
+    if (propertyDialogBox != null) {
+      propertyDialogBox = null;
+    }
+    propertyDialogBox = new ProjectPropertiesDialogBox(selectedCategory);
+    propertyDialogBox.show();
+  }
+
   /**
    * Returns a project editor factory for {@code YaProjectEditor}s.
    *
@@ -181,11 +203,13 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
   private void loadProject() {
     // add form editors first, then blocks editors because the blocks editors
     // need access to their corresponding form editors to set up properly
+    Ode.CLog("Loading Project...");
     for (ProjectNode source : projectRootNode.getAllSourceNodes()) {
       if (source instanceof YoungAndroidFormNode) {
         addFormEditor((YoungAndroidFormNode) source);
       } 
     }
+    Ode.CLog("Form Editors Added...");
     for (ProjectNode source : projectRootNode.getAllSourceNodes()) {
       if (source instanceof YoungAndroidBlocksNode) {
         addBlocksEditor((YoungAndroidBlocksNode) source);
@@ -201,6 +225,7 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
         if (isScreen1(formName)) {
           screen1Added = true;
           if (readyToShowScreen1()) {  // probably not yet but who knows?
+            Ode.CLog("Screen1 Ready..");
             OdeLog.log("YaProjectEditor.loadProject: switching to screen " + formName 
                 + " for project " + projectRootNode.getProjectId());
             Ode.getInstance().getDesignToolbar().switchToScreen(projectRootNode.getProjectId(), 
@@ -213,10 +238,12 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
         OdeLog.wlog("Missing blocks editor for " + formName);
       }
     }
+    Ode.CLog("After Adding Screens to the designer tool bar");
   }
   
   @Override
   protected void onShow() {
+    Ode.CLog("On Show Called");
     OdeLog.log("YaProjectEditor got onShow() for project " + projectId);
     
     AssetListBox.getAssetListBox().getAssetList().refreshAssetList(projectId);
@@ -239,6 +266,8 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
         ErrorReporter.reportError("Internal error: can't switch file editors.");
       }
     }
+
+    Ode.CLog("On Show Finished");
   }
 
   @Override
@@ -442,6 +471,7 @@ public final class YaProjectEditor extends ProjectEditor implements ProjectChang
     final YaFormEditor newFormEditor = new YaFormEditor(this, formNode);
     final String formName = formNode.getFormName();
     OdeLog.log("Adding form editor for " + formName);
+    Ode.CLog("Adding form editor for " + formName);
     if (editorMap.containsKey(formName)) {
       // This happens if the blocks editor was already added.
       editorMap.get(formName).formEditor = newFormEditor;

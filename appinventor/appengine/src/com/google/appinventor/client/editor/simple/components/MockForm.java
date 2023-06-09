@@ -855,7 +855,7 @@ public final class MockForm extends MockContainer {
     // The Icon property actually applies to the application and is only visible on Screen1.
     // When we load a form that is not Screen1, this method will be called with the default value
     // for icon (empty string). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_ICON, icon);
@@ -866,7 +866,7 @@ public final class MockForm extends MockContainer {
     // The VersionCode property actually applies to the application and is only visible on Screen1.
     // When we load a form that is not Screen1, this method will be called with the default value
     // for VersionCode (1). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_CODE, vcode);
@@ -877,7 +877,7 @@ public final class MockForm extends MockContainer {
     // The VersionName property actually applies to the application and is only visible on Screen1.
     // When we load a form that is not Screen1, this method will be called with the default value
     // for VersionName (1.0). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_NAME, vname);
@@ -888,7 +888,7 @@ public final class MockForm extends MockContainer {
     // The Compatibility property actually applies to the application and is only visible on
     // Screen1. When we load a form that is not Screen1, this method will be called with the
     // default value for CompatibilityProperty (false). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
         editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING, sizingProperty);
@@ -899,7 +899,7 @@ public final class MockForm extends MockContainer {
     // This property actually applies to the application and is only visible on
     // Screen1. When we load a form that is not Screen1, this method will be called with the
     // default value for ShowListsAsJsonProperty (false). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_SHOW_LISTS_AS_JSON, asJson);
@@ -920,7 +920,7 @@ public final class MockForm extends MockContainer {
     // This property actually applies to the application and is only visible on
     // Screen1. When we load a form that is not Screen1, this method will be called with the
     // default value for TutorialURL (""). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_TUTORIAL_URL, asJson);
@@ -930,20 +930,21 @@ public final class MockForm extends MockContainer {
   private void setBlockSubsetProperty(String asJson) {
     //This property applies to the application and is only visible on Screen1. When we load a form that is
     //not Screen1, this method will be called with the default value for SubsetJson (""). We need to ignore that.
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_BLOCK_SUBSET, asJson);
-      if (editor.isLoadComplete()) {
-        ((YaFormEditor)editor).reloadComponentPalette(asJson);
-      }
+    }
+    
+    if (editor.isLoadComplete()) {
+      ((YaFormEditor)editor).reloadComponentPalette(asJson);
     }
   }
 
   private void setANameProperty(String aname) {
     // The AppName property actually applies to the application and is only visible on Screen1.
     // When we load a form that is not Screen1, this method will be called with the default value
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_APP_NAME, aname);
@@ -957,7 +958,7 @@ public final class MockForm extends MockContainer {
 
   private void setActionBarProperty(String actionBar) {
     this.actionBar = Boolean.parseBoolean(actionBar);
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_ACTIONBAR, actionBar);
@@ -969,7 +970,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setPrimaryColor(String color) {
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR, color);
@@ -983,7 +984,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setPrimaryColorDark(String color) {
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_PRIMARY_COLOR_DARK, color);
@@ -992,8 +993,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setAccentColor(String color) {
-    Ode.CLog("Callled Accent Color...");
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR, color);
@@ -1001,7 +1001,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setTheme(String theme) {
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_THEME, theme);
@@ -1049,7 +1049,7 @@ public final class MockForm extends MockContainer {
   }
 
   private void setDefaultFileScope(String defaultFileScope) {
-    if (true) {
+    if (editor.isScreen1()) {
       editor.getProjectEditor().changeProjectSettingsProperty(
           SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
           SettingsConstants.YOUNG_ANDROID_SETTINGS_DEFAULTFILESCOPE, defaultFileScope);
@@ -1442,6 +1442,10 @@ public final class MockForm extends MockContainer {
     }
   }
 
+  public void updatePropertiesPanel() {
+    ((YaFormEditor) editor).loadDesigner();
+  }
+
   @Override
   public EditableProperties getProperties() {
     // Before we return the Properties object, we make sure that the
@@ -1450,7 +1454,7 @@ public final class MockForm extends MockContainer {
     // per project, not per Screen(Form) We only have to do this on
     // screens other then screen1 because screen1's value is
     // definitive.
-    if (!((YaFormEditor)editor).normalCheck()) {
+    if (!editor.isScreen1()) {
       properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_SIZING,
           editor.getProjectEditor().getProjectSettingsProperty(
             SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
@@ -1483,32 +1487,11 @@ public final class MockForm extends MockContainer {
           editor.getProjectEditor().getProjectSettingsProperty(
             SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
             SettingsConstants.YOUNG_ANDROID_SETTINGS_ACCENT_COLOR));
-      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_APP_NAME,
-            editor.getProjectEditor().getProjectSettingsProperty(
-              SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-              SettingsConstants.YOUNG_ANDROID_SETTINGS_APP_NAME));
-      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_DEFAULTFILESCOPE,
-            editor.getProjectEditor().getProjectSettingsProperty(
-              SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-              SettingsConstants.YOUNG_ANDROID_SETTINGS_DEFAULTFILESCOPE));
-      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_ICON,
-              editor.getProjectEditor().getProjectSettingsProperty(
-                SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-                SettingsConstants.YOUNG_ANDROID_SETTINGS_ICON));
-      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_CODE,
-              editor.getProjectEditor().getProjectSettingsProperty(
-                SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-                SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_CODE));
-      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_NAME,
-                editor.getProjectEditor().getProjectSettingsProperty(
-                  SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
-                  SettingsConstants.YOUNG_ANDROID_SETTINGS_VERSION_NAME));
+      properties.changePropertyValue(SettingsConstants.YOUNG_ANDROID_SETTINGS_ACTIONBAR, 
+          editor.getProjectEditor().getProjectSettingsProperty(
+            SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS,
+            SettingsConstants.YOUNG_ANDROID_SETTINGS_ACTIONBAR));
     }
     return properties;
   }
-
-  public EditableProperties listProperties() {
-    return properties;
-  } 
-
 }

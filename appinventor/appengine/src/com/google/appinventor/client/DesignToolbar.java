@@ -10,7 +10,7 @@ import com.google.appinventor.client.editor.FileEditor;
 import com.google.appinventor.client.editor.ProjectEditor;
 import com.google.appinventor.client.editor.youngandroid.BlocklyPanel;
 import com.google.appinventor.client.editor.youngandroid.YaBlocksEditor;
-
+import com.google.appinventor.client.editor.youngandroid.YaProjectEditor;
 import com.google.appinventor.client.explorer.commands.AddFormCommand;
 import com.google.appinventor.client.explorer.commands.ChainableCommand;
 import com.google.appinventor.client.explorer.commands.DeleteFileCommand;
@@ -253,8 +253,10 @@ public class DesignToolbar extends Toolbar {
   private class ProjectPropertiesAction implements Command {
     @Override
     public void execute() {
-      final ProjectPropertiesDialogBox dialogBox = new ProjectPropertiesDialogBox();
-      dialogBox.show();
+      // new ProjectPropertiesDialogBox();
+      YaProjectEditor projectEditor = (YaProjectEditor)Ode.getInstance().getEditorManager()
+      .getOpenProjectEditor(Ode.getInstance().getCurrentYoungAndroidProjectId());
+      projectEditor.openProjectPropertyDialog();
     }
   }
 
