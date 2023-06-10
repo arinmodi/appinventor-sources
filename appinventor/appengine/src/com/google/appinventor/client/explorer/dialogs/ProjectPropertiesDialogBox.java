@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.appinventor.client.Ode;
 import com.google.appinventor.client.DesignToolbar.Screen;
 
+import com.google.gwt.core.client.Scheduler;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -170,6 +172,13 @@ public class ProjectPropertiesDialogBox extends DialogBox implements PropertyCha
         VerticalPanel newPanel = showProperty(selectedLabel.getText());
         propertiesPanel.add(newPanel);
         cur = newPanel;
+
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                lastDialog.center();
+            }
+        });
     }
 
     /**
@@ -218,11 +227,6 @@ public class ProjectPropertiesDialogBox extends DialogBox implements PropertyCha
     void handleClose(ClickEvent e) {
         projectEditor.setSelectedCategory(selectedLabel.getText().toString());
         this.hide();
-    }
-
-    protected void onLoad() {
-        super.onLoad();
-        center();
     }
 
     public static void closeIfOpen() {
