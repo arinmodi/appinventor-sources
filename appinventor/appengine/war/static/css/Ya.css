@@ -1444,7 +1444,13 @@ path.ode-SimpleMockMapFeature-selected {
 .ode-propertyDialogDivInnerHeader {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+#ode-closeButton {
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: 15px;
 }
 
 .ode-propertyDialogVerticalPanel {
